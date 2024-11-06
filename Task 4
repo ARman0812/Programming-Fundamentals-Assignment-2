@@ -1,0 +1,30 @@
+#include <iostream>
+
+int main() {
+    double priceA = 50.0, priceB = 30.0, priceC = 20.0;
+    int quantityA, quantityB, quantityC;
+
+    std::cout << "Enter the quantity of Product A: ";
+    std::cin >> quantityA;
+    std::cout << "Enter the quantity of Product B: ";
+    std::cin >> quantityB;
+    std::cout << "Enter the quantity of Product C: ";
+    std::cin >> quantityC;
+
+    double total = (priceA  quantityA) + (priceB  quantityB) + (priceC  quantityC);
+
+    // Applying discount
+    double finalTotal = (total > 200) ? total  0.9 : total;
+
+    // Add shipping cost if the total is less than $150
+    double shipping = (finalTotal < 150) ? 15.0 : 0.0;
+    double totalWithShipping = finalTotal + shipping;
+
+    // Loyalty points based on total
+    int loyaltyPoints = (totalWithShipping > 300) ? 50 : 20;
+
+    std::cout << "Total after discount and shipping: $" << totalWithShipping << std::endl;
+    std::cout << "Loyalty points earned: " << loyaltyPoints << std::endl;
+
+    return 0;
+}
