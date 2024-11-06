@@ -1,1 +1,21 @@
-.
+#include <iostream>
+
+int main() {
+    double priceA = 50.0; // Price of Product A
+    double priceB = 30.0; // Price of Product B
+    double priceC = 20.0; // Price of Product C
+    int quantityA, quantityB, quantityC;
+
+    std::cout << "Enter the quantity of Product A: ";
+    std::cin >> quantityA;
+    std::cout << "Enter the quantity of Product B: ";
+    std::cin >> quantityB;
+    std::cout << "Enter the quantity of Product C: ";
+    std::cin >> quantityC;
+
+    double total = (priceA * quantityA) + (priceB  *quantityB) + (priceC * quantityC);
+    std::cout << "Total cost: $" << total << std::endl;
+
+    return 0;
+}
+
