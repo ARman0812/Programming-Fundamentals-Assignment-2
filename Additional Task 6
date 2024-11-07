@@ -1,0 +1,142 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Product prices
+    double priceA = 50.0;
+    double priceB = 30.0;
+    double priceC = 20.0;
+
+    // Stock limits
+    int stockA = 100, stockB = 50, stockC = 80;
+
+    // User input for quantities
+    int quantityA = 0, quantityB = 0, quantityC = 0;
+    cout << "Welcome to Abdullah store. Let's calculate your total.\n";
+
+    // Get quantity for Product A
+    cout << "How many units of Product A would you like to buy? (25Rs each): ";
+    cin >> quantityA;
+    if (quantityA > stockA) {
+        cout << "Sorry, only " << stockA << " units of Product A are available.\n";
+        cout << "Please enter a valid quantity for Product A: ";
+        cin >> quantityA;
+    }
+
+    // Get quantity for Product B
+    cout << "How many units of Product B would you like to buy? (15Rs each): ";
+    cin >> quantityB;
+    if (quantityB > stockB) {
+        cout << "Sorry, only " << stockB << " units of Product B are available.\n";
+        cout << "Please enter a valid quantity for Product B: ";
+        cin >> quantityB;
+    }
+
+    // Get quantity for Product C
+    cout << "How many units of Product C would you like to buy? (10Rs each): ";
+    cin >> quantityC;
+    if (quantityC > stockC) {
+        cout << "Sorry, only " << stockC << " units of Product C are available.\n";
+        cout << "Please enter a valid quantity for Product C: ";
+        cin >> quantityC;
+    }
+
+    // Calculate total
+    double total = (priceA * quantityA) + (priceB * quantityB) + (priceC * quantityC);
+    cout << "\nSubtotal: Rs" << total << endl;
+
+    // Apply discount if applicable
+    double finalTotal = (total > 200) ? total * 0.9 : total;
+    if (total > 200) {
+        cout << "Discount applied! You have saved 10%.\n";
+    } else {
+        cout << "No discount applied (spend over Rs200 for a 10% discount).\n";
+    }
+
+    // Shipping fee
+    double shipping = (finalTotal < 150) ? 15.0 : 0.0;
+    if (shipping > 0) {
+        cout << "Shipping fee of Rs15 applied (orders over Rs150 ship free).\n";
+    } else {
+        cout << "Free shipping applied!\n";
+    }
+
+    // Total with shipping
+    double Shipping = finalTotal + shipping;
+
+    // Loyalty points
+    int loyaltyPoints = (Shipping > 300) ? 50 : 20;
+    if (Shipping > 300) {
+        cout << "You have earned 50 loyalty points.\n";
+    } else {
+        cout << "You have earned 20 loyalty points.\n";
+    }
+
+    // Payment method
+    int paymentMethod;
+    cout << "\nChoose your payment method:\n";
+    cout << "1. Credit Card (5% transaction fee)\n";
+    cout << "2. PayPal (7% transaction fee)\n";
+    cout << "3. Cash (no transaction fee)\n";
+    cout << "Enter the number corresponding to your choice: ";
+    cin >> paymentMethod;
+
+    double transactionFee = (paymentMethod == 1) ? Shipping * 0.05 :
+                            (paymentMethod == 2) ? Shipping * 0.07 : 0.0;
+
+    double totalAfterPayment = Shipping + transactionFee;
+
+    // Customer type discount
+    int customerType;
+    cout << "\nEnter customer type (1 for Regular, 2 for VIP): ";
+    cin >> customerType;
+    double finalAmount = (customerType == 2) ? totalAfterPayment * 0.95 : totalAfterPayment;
+    if (customerType == 2) {
+        cout << "VIP Discount applied! You have saved an additional 5%.\n";
+    } else {
+        cout << "No additional discount applied for Regular customers.\n";
+    }
+
+    // Coupon code
+    string couponCode;
+    cout << "\nEnter a coupon code (if any): ";
+    cin >> couponCode;
+
+    double couponDiscount = (couponCode == "SAVE10") ? 10.0 : 0.0;
+    double totalAfterCoupon = finalAmount - couponDiscount;
+
+    if (couponDiscount > 0) {
+        cout << "Coupon code applied! You saved Rs" << couponDiscount << ".\n";
+    } else {
+        cout << "Invalid coupon code or no coupon applied.\n";
+    }
+
+    // Sales tax
+    int location;
+    cout << "\nEnter your location (1, 2, or 3): ";
+    cin >> location;
+
+    double taxRate = (location == 1) ? 0.05 : 
+                     (location == 2) ? 0.10 : 
+                     (location == 3) ? 0.08 : 0.0;
+
+    double totalWithTax = totalAfterCoupon * (1 + taxRate);
+    cout << "Sales tax applied: Rs" << totalWithTax - totalAfterCoupon << endl;
+
+    // Final receipt
+    cout << "\n--- Final Receipt ---" << endl;
+    cout << "Total before discount: Rs" << total << endl;
+    cout << "Total after discount: Rs" << finalTotal << endl;
+    cout << "Shipping cost: Rs" << shipping << endl;
+    cout << "Total cost after discount and shipping: Rs" << Shipping << endl;
+    cout << "Transaction fee: Rs" << transactionFee << " (based on payment method)" << endl;
+    cout << "Final amount to pay: Rs" << totalAfterPayment << endl;
+    cout << "Final amount to pay after VIP discount: Rs" << finalAmount << endl;
+    cout << "Final amount to pay after coupon discount: Rs" << totalAfterCoupon << endl;
+    cout << "Total amount after tax: Rs" << totalWithTax << endl;
+    cout << "Loyalty points earned: " << loyaltyPoints << " points" << endl;
+    cout << "Thank you for shopping!" << endl;
+
+    // Created By: Muhammad Abdullah 0119 BSCS10
+    return 0;
+}
